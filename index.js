@@ -257,14 +257,6 @@ const executeGraphql = async ({
       context,
       contextsPerService
     );
-    if (result.errors) {
-      if (result.errors.length === 1) {
-        result.errors[0].message = result.errors[0].message + `, path: ${result.errors[0].path}`
-        throw result.errors[0];
-      } else {
-        throw new Error(result.errors.map((e) => `${e.message}, path: ${e.path}`).join(","));
-      }
-    }
   } catch (e) {
     const smallStack = e.stack.split("\n");
     e.stack = [...smallStack, ...splitLines]
